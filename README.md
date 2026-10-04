@@ -6,7 +6,7 @@ Official implementation for the paper "Curvature Diversity-Driven Deformation an
 
 The recorded environment uses Python 3.8.18, PyTorch 2.0.1 with CUDA 11.8, NumPy 1.24.4, and Open3D 0.18.0. Training also requires SciPy, scikit-learn, pandas, and h5py; the download scripts use gdown.
 
-`requirements.txt` contains the full Linux environment export, including Conda packages and packages installed through pip. Use it as a version reference when setting up your environment; it is not a standard pip requirements file. Use a CUDA-enabled environment for training.
+`environment.yaml` records the full Linux environment, including Conda dependencies and a separate pip dependency group. Use it as a version reference when setting up your environment. Use a CUDA-enabled environment for training.
 
 ## Data preparation
 
@@ -117,7 +117,7 @@ utils/                 Domain alignment, point cloud utilities, and logging
 compute_norm_curv.py   Curvature preprocessing
 trainer_ours.py        Classification training
 trainer_ours_seg.py    Segmentation training
-requirements.txt       Recorded environment
+environment.yaml       Recorded environment
 ```
 
 ## Citation
