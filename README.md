@@ -4,9 +4,31 @@ Official implementation for the paper "Curvature Diversity-Driven Deformation an
 
 ## Environment
 
-The recorded environment uses Python 3.8.18, PyTorch 2.0.1 with CUDA 11.8, NumPy 1.24.4, and Open3D 0.18.0. Training also requires SciPy, scikit-learn, pandas, and h5py; the download scripts use gdown.
+Set up the environment on Linux with Conda and an NVIDIA GPU for training. Run these commands from the repository root:
 
-`environment.yaml` records the full Linux environment, including Conda dependencies and a separate pip dependency group. Use it as a version reference when setting up your environment. Use a CUDA-enabled environment for training.
+```bash
+conda env create -f environment.yaml
+conda activate curvrecdnwd
+```
+
+[`environment.yaml`](environment.yaml) contains the dependencies used by the project. Conda installs Python 3.8.18, PyTorch 2.0.1, and the CUDA 11.8 runtime; pip installs the remaining packages. Dependencies of these packages are installed automatically.
+
+| Package | Version | Purpose |
+| --- | --- | --- |
+| NumPy | 1.24.4 | Point cloud arrays and numerical operations |
+| SciPy | 1.10.1 | Scientific routines required by other packages |
+| scikit-learn | 1.3.2 | Classification and segmentation metrics |
+| pandas | 2.0.3 | Training logs |
+| h5py | 3.11.0 | ScanNet HDF5 data |
+| Open3D | 0.18.0 | Curvature preprocessing |
+| OpenCV | 4.10.0.84 | Image utilities |
+| gdown | 5.0.1 | Dataset downloads |
+
+Check that PyTorch can access the GPU before training:
+
+```bash
+python -c "import torch; print('PyTorch:', torch.__version__); print('CUDA available:', torch.cuda.is_available())"
+```
 
 ## Data preparation
 
@@ -110,14 +132,14 @@ python trainer_ours_seg.py --help
 ## Repository structure
 
 ```text
-CurvDefRec/             Curvature-based deformation and reconstruction
-PointDA/               Classification models and data loaders
-PointSegDA/            Segmentation models and data loaders
-utils/                 Domain alignment, point cloud utilities, and logging
+CurvDefRec/            Curvature-based deformation and reconstruction
+PointDA/              Classification models and data loaders
+PointSegDA/           Segmentation models and data loaders
+utils/                Domain alignment, point cloud utilities, and logging
 compute_norm_curv.py   Curvature preprocessing
 trainer_ours.py        Classification training
 trainer_ours_seg.py    Segmentation training
-environment.yaml       Recorded environment
+environment.yaml      Project environment
 ```
 
 ## Citation
